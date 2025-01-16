@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrialist Ratio Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2d2d2d;
+            color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #3c3c3c;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            padding: 20px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #ffd700;
+        }
+
+        select, input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .calculate-btn {
+            background-color: #ff4500;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            background-color: #ff6347;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #c0c0c0;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Industrialist Ratio Calculator</h1>
+        <p>Select your item, conditions, and calculate!</p>
+
+        <label for="item-type">Item Type</label>
+        <select id="item-type">
+            <option value="crankshaft">Crankshaft</option>
+            <option value="gear">Gear</option>
+            <option value="shaft">Shaft</option>
+        </select>
+
+        <label for="speed">Speed (items/s)</label>
+        <input type="number" id="speed" placeholder="Enter speed">
+
+        <label for="machine-tier">Machine Tier</label>
+        <select id="machine-tier">
+            <option value="basic">Basic</option>
+            <option value="industrial">Industrial</option>
+            <option value="advanced">Advanced</option>
+        </select>
+
+        <label for="steam-source">Steam Source</label>
+        <select id="steam-source">
+            <option value="firebox">Firebox</option>
+            <option value="boiler">Boiler</option>
+        </select>
+
+        <label for="drill-head">Mineshaft Drill Head</label>
+        <select id="drill-head">
+            <option value="none">N/A</option>
+            <option value="iron">Iron</option>
+            <option value="steel">Steel</option>
+        </select>
+
+        <button class="calculate-btn" onclick="calculateRatios()">CALCULATE</button>
+
+        <div class="result" id="result">Result will appear here</div>
+
+        <div class="footer">
+            <p>Author: <a href="#">#habbibi</a></p>
+            <p>Data Storage: <a href="#">Industrialist Data Storage</a></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateRatios() {
+            // Get input values
+            const itemType = document.getElementById('item-type').value;
+            const speed = parseFloat(document.getElementById('speed').value);
+            const machineTier = document.getElementById('machine-tier').value;
+            const steamSource = document.getElementById('steam-source').value;
+            const drillHead = document.getElementById('drill-head').value;
+
+            // Perform dummy calculation (replace this with actual logic)
+            const result = `Item: ${itemType}, Speed: ${speed} items/s, Tier: ${machineTier}, Steam: ${steamSource}, Drill: ${drillHead}`;
+
+            // Display result
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+</body>
+</html>
 
