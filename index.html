@@ -24,11 +24,31 @@
             padding: 20px;
             width: 350px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         h1 {
             color: #ffd700;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.9em;
+            color: #d3d3d3;
+            margin-bottom: 20px;
         }
 
         select, input {
@@ -38,6 +58,7 @@
             border: none;
             border-radius: 5px;
             background-color: #f9f9f9;
+            font-size: 1em;
         }
 
         .calculate-btn {
@@ -49,6 +70,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             margin-top: 10px;
+            transition: background-color 0.3s;
         }
 
         .calculate-btn:hover {
@@ -58,6 +80,10 @@
         .result {
             margin-top: 20px;
             font-size: 1.2em;
+            color: #ffd700;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
         }
 
         .footer {
@@ -75,37 +101,21 @@
 <body>
     <div class="container">
         <h1>Industrialist Ratio Calculator</h1>
-        <p>Select your item, conditions, and calculate!</p>
+        <p>Select your item, input the amount and speed, and calculate!</p>
 
         <label for="item-type">Item Type</label>
         <select id="item-type">
             <option value="crankshaft">Crankshaft</option>
             <option value="gear">Gear</option>
             <option value="shaft">Shaft</option>
+            <option value="wheel">Wheel</option>
         </select>
 
-        <label for="speed">Speed (items/s)</label>
-        <input type="number" id="speed" placeholder="Enter speed">
+        <label for="amount">Amount of Item</label>
+        <input type="number" id="amount" placeholder="Enter amount" min="1">
 
-        <label for="machine-tier">Machine Tier</label>
-        <select id="machine-tier">
-            <option value="basic">Basic</option>
-            <option value="industrial">Industrial</option>
-            <option value="advanced">Advanced</option>
-        </select>
-
-        <label for="steam-source">Steam Source</label>
-        <select id="steam-source">
-            <option value="firebox">Firebox</option>
-            <option value="boiler">Boiler</option>
-        </select>
-
-        <label for="drill-head">Mineshaft Drill Head</label>
-        <select id="drill-head">
-            <option value="none">N/A</option>
-            <option value="iron">Iron</option>
-            <option value="steel">Steel</option>
-        </select>
+        <label for="speed">Speed of Item (seconds)</label>
+        <input type="number" id="speed" placeholder="Enter time in seconds" min="0.1" step="0.1">
 
         <button class="calculate-btn" onclick="calculateRatios()">CALCULATE</button>
 
@@ -121,13 +131,17 @@
         function calculateRatios() {
             // Get input values
             const itemType = document.getElementById('item-type').value;
+            const amount = parseInt(document.getElementById('amount').value);
             const speed = parseFloat(document.getElementById('speed').value);
-            const machineTier = document.getElementById('machine-tier').value;
-            const steamSource = document.getElementById('steam-source').value;
-            const drillHead = document.getElementById('drill-head').value;
 
-            // Perform dummy calculation (replace this with actual logic)
-            const result = `Item: ${itemType}, Speed: ${speed} items/s, Tier: ${machineTier}, Steam: ${steamSource}, Drill: ${drillHead}`;
+            if (isNaN(amount) || isNaN(speed) || amount <= 0 || speed <= 0) {
+                document.getElementById('result').textContent = "Please enter valid inputs.";
+                return;
+            }
+
+            // Perform calculation (example logic: ratio = amount / speed)
+            const ratio = (amount / speed).toFixed(2);
+            const result = `For ${amount} ${itemType}(s) produced in ${speed} seconds, the production rate is ${ratio} items/second.`;
 
             // Display result
             document.getElementById('result').textContent = result;
@@ -135,4 +149,3 @@
     </script>
 </body>
 </html>
-
